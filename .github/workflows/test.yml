@@ -11,20 +11,23 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Docker
-      uses: docker/setup-buildx-action@v3
-    
-    - name: Setup Docker Compose
-      uses: docker/setup-qemu-action@v3
-    
-    - name: Ensure Docker Compose is available
-      run: docker-compose version
-    
-    - name: Copy .env.example to .env
-      run: cp .env.example .env
+      - name: Setup Docker
+        uses: docker/setup-buildx-action@v3
 
-    - name: Run integration tests
-      run: ./scripts/run-integration.sh
+      - name: Setup Docker Compose
+        uses: docker/setup-qemu-action@v3
+
+      - name: Ensure Docker Compose is available
+        run: |
+          curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          chmod +x /usr/local/bin/docker-compose
+          docker-compose version
+
+      - name: Copy .env.example to .env
+        run: cp .env.example .env
+
+      - name: Run integration tests
+        run: ./scripts/run-integration.sh
