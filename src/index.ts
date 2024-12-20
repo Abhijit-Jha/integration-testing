@@ -5,7 +5,7 @@ export const app = express()
 app.use(express.json())
 app.post("/addUser",async(req :Request,res :Response)=>{
     const {name, age, gender} = req.body;
-
+    console.log("Testing");
     if(!name || !age || !gender){
         res.status(411).json({
             "error" : "Inputs missing"
