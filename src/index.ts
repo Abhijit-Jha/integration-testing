@@ -22,7 +22,7 @@ app.post("/addUser",async(req :Request,res :Response)=>{
     })
 
     res.status(201).json({
-        "message" : "User created Successfully",
+        "message" : "errorness data",
         id : user.id
     });
 
