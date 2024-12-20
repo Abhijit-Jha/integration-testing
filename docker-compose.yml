@@ -7,3 +7,4 @@ services:
       - POSTGRES_PASSWORD=mysecretpassword
     ports:
       - '5432:5432'
+      
